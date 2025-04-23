@@ -3,15 +3,15 @@ package ui
 import "byte-ps/internal/terminal"
 
 type Display struct {
-	*terminal.RawTerminal
+	terminal *terminal.RawTerminal
 }
 
 func NewDisplay(rawTerminal *terminal.RawTerminal) *Display {
 	return &Display{
-		RawTerminal: rawTerminal,
+		terminal: rawTerminal,
 	}
 }
 
 func (d *Display) ClearScreen() {
-	d.RawTerminal.ClearScreen()
+	d.terminal.ClearScreen()
 }

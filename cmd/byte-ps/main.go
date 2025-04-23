@@ -1,19 +1,21 @@
 package main
 
 import (
-	"byte-ps/internal/terminal"
-	"byte-ps/internal/ui"
+	"byte-ps/internal/editor"
 	"fmt"
 )
 
 func main() {
 	fmt.Println("hop on to byte-ps... :)")
-	rawTerm, err := terminal.NewRawTerminal()
+	editor, err := editor.NewEditor()
 	if err != nil {
-		fmt.Printf("failed to start the editor, %v\n", err)
+		fmt.Printf("error while starting the editor, %v\n", err)
+		return
 	}
-	defer rawTerm.Close()
 
-	display := ui.NewDisplay(rawTerm)
-	display.ClearScreen()
+	err = editor.Begin()
+	if err != nil {
+		fmt.Printf("error while starting the editor, %v\n", err)
+		return
+	}
 }
